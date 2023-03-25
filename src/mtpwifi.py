@@ -5,6 +5,7 @@
 #
 # mtpwifi.py - Nikon MTP over Wifi interface
 # Copyright (C) 2015, testcams.com
+# Copyright (c) 2023, Lenko Grigorov
 #
 # This module is licensed under GPL v3: http://www.gnu.org/licenses/gpl-3.0.html
 #
@@ -388,12 +389,12 @@ def sendInitCmdReq(s, guidHighLowTuple, hostNameStr, hostVerInt):
 			return rxdata[4:]
 		else:
 			raise MtpProtocolException(\
-				"\nThe camera is rejecting the unique identifier (GUID) that airnef is\n"\
+				"\nThe camera is rejecting the unique identifier (GUID) that airnef-2 is\n"\
 				"presenting. Some cameras including most Canon's associate a given Wifi\n"\
 				"configuration to a particular remote application's GUID. If you have used a\n"\
-				"remote application other than airnef with this camera (or a different\n"\
-				"version of airnef) then you may need to re-create the WiFi configuration\n"\
-				"on the camera to allow it to be associated with airnef's GUID.")
+				"remote application other than airnef-2 with this camera (or a different\n"\
+				"version of airnef-2) then you may need to re-create the WiFi configuration\n"\
+				"on the camera to allow it to be associated with airnef-2's GUID.")
 	except socket.error as error:
 		#
 		# in my testing I found situations where my J4 enter a state where it would accept the TCP/IP

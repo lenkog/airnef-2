@@ -5,6 +5,7 @@
 #
 # airnefcmd.py - Wireless file transfer for PTP/MTP-equipped cameras (command-line app)
 # Copyright (C) 2015, testcams.com
+# Copyright (c) 2023, Lenko Grigorov
 #
 # This module is licensed under GPL v3: http://www.gnu.org/licenses/gpl-3.0.html
 #
@@ -42,7 +43,7 @@ import subprocess
 # constants
 #
 
-AIRNEFCMD_APP_VERSION	= "1.1"
+AIRNEFCMD_APP_VERSION	= "1.0.0"
 
 DEFAULT_MAX_KB_PER_GET_OBJECT_REQUEST				= 1024 		# 1MB - empirically tweaked to get max download performance from Nikon bodies (too large an xfer and Nikon bodies start intermittently dropping connections)
 DEFAULT_MAX_KB_TO_BUFFER_FOR_GET_OBJECT_REQUESTS 	= 32768		# 32MB - max bytes we buffer before flushing what we have to disk
@@ -622,7 +623,7 @@ def processCmdLine():
 	#
 	parser = ArgumentParserWithException(fromfile_prefix_chars='!',\
 		formatter_class=argparse.RawDescriptionHelpFormatter,
-		description='Wifi image transfer utility for Nikon cameras (airnef@hotmail.com)',\
+		description='Wifi image transfer utility for Nikon cameras',\
 		epilog="Options can also be specified from a file. Use !<filename>. Each word in the\nfile must be on its own line.\n\nYou "\
 			"can abbreviate any argument name provided you use enough characters to\nuniquely distinguish it from other argument names.\n"\
 			"\n\n"\
@@ -3617,9 +3618,9 @@ def appMain():
 				# will remain in the 'Send to Computer' screen/mode. the camera will accept future TCP/IP
 				# socket connections but will not respond to any MTP requests, so warn user about this
 				#
-				applog_i("\nBefore running airnef again please press 'Cancel' on your Sony camera's\n"\
+				applog_i("\nBefore running airnef-2 again please press 'Cancel' on your Sony camera's\n"\
 						 "'Send to Computer' screen and select 'Send to Computer' again. Failing to\n"\
-						 "do this will cause the next airnef session to not negotiate successfully.")
+						 "do this will cause the next airnef-2 session to not negotiate successfully.")
 						 
 		if bEchoNewlineBeforeReturning:
 			applog_i("")
@@ -3674,7 +3675,7 @@ def main():
 	#
 	# display app banner
 	#
-	applog_i("\nairnef v{:s} - Wireless transfer of images/movies for Nikon cameras [GPL v3]".format(AIRNEFCMD_APP_VERSION))
+	applog_i("\nairnef-2 v{:s} - Wireless transfer of images/movies for Nikon cameras [GPL v3]".format(AIRNEFCMD_APP_VERSION))
 	applog_i("Copyright (c) TestCams.com, Time: {:s}, Py: {:d}.{:d}.{:d}, OS: {:s}\n".format(strutil.getDateTimeStr(fMilitaryTime=True),\
 		sys.version_info.major, sys.version_info.minor, sys.version_info.micro,
 		platform.system()))

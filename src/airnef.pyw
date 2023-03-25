@@ -5,6 +5,7 @@
 #
 # airnef.py - Wireless file transfer for PTP/MTP-equipped cameras (GUI app)
 # Copyright (C) 2015, testcams.com
+# Copyright (c) 2023, Lenko Grigorov
 #
 # This module is licensed under GPL v3: http://www.gnu.org/licenses/gpl-3.0.html
 #
@@ -58,7 +59,7 @@ import sys
 #
 # constants
 #
-AIRNEF_APP_VERSION	= "1.1"
+AIRNEF_APP_VERSION	= "1.0.0"
 buttonBgColor = "#E8E8E8"
 mainBgColor = "#E0E0E0"
 toolbarColor = "#B0B0B0"
@@ -290,14 +291,14 @@ def displayAirnefcmdOutput():
 	#
 	mostRecentAirnefReportFilename = os.path.join(g.appDataDir, "airnefcmd-log-last.txt")
 	if not os.path.exists(mostRecentAirnefReportFilename):
-		tkMessageBox.showwarning("airnef Transfer Report", "No airnefcmd operations have been performed yet")
+		tkMessageBox.showwarning("airnef-2 Transfer Report", "No airnefcmd operations have been performed yet")
 		return
 	fileReport = None
 	try:
 		fileReport = open(mostRecentAirnefReportFilename, "r")
 		reportContents = fileReport.read()
 	except IOError as e:
-		tkMessageBox.showerror("airnef Transfer Report", "Error reading airnefcmd report file \"{:s}\". {:s}".format(mostRecentAirnefReportFilename, str(e)))
+		tkMessageBox.showerror("airnef-2 Transfer Report", "Error reading airnefcmd report file \"{:s}\". {:s}".format(mostRecentAirnefReportFilename, str(e)))
 		return
 	finally:
 		if fileReport:
@@ -325,7 +326,7 @@ def displayAirnefcmdOutput():
 
 	if g.isOSX and g.isFrozen:
 		g.app.showQuickTip('osx_terminal_auto_close', 4,
-			"airnef performs its job by launching airnefcmd in a terminal window. By default OSX "\
+			"airnef-2 performs its job by launching airnefcmd in a terminal window. By default OSX "\
 			"keeps that terminal window open even after airnefcmd has completed, requiring you to "\
 			"to close it manually. You can configure OSX to close the terminal window automatically. "\
 			"Go to the Terminal application and select 'Preferences' in the Terminal menu. " \
@@ -338,7 +339,7 @@ def displayAirnefcmdOutput():
 	#
 	topLevelFrame = Toplevel(root)
 	topLevelFrame.geometry('900x420')
-	topLevelFrame.title("airnef Transfer Report")
+	topLevelFrame.title("airnef-2 Transfer Report")
 	setFrameIcon(topLevelFrame)
 	
 	#
@@ -437,7 +438,7 @@ class Application(Frame):
 	
 		Frame.__init__(self, master, bg=mainBgColor)
 
-		root.title("airnef - Wirelessly download images and movies from your Nikon Camera")
+		root.title("airnef-2 - Wirelessly download images and movies from your Nikon Camera")
 		setFrameIcon(root)
 		
 		# resources
@@ -575,7 +576,7 @@ class Application(Frame):
 		
 		# present the tip to the user if we've reached its threshold
 		if quickTipsDict[tipReference] >= numOccurrencesBeforePresentingTip:
-			tkMessageBox.showinfo("airnef Quick Tip", tipStr)		
+			tkMessageBox.showinfo("airnef-2 Quick Tip", tipStr)		
 					
 	def createTopLevelMenu(self):
 	
@@ -588,10 +589,9 @@ class Application(Frame):
 
 		# help menu
 		helpmenu = Menu(menubar, tearoff=0)
-		helpmenu.add_command(label="About", command=lambda : tkMessageBox.showinfo("airnef", \
-			"airnef - Version {:s}\n\nRunning under Python Version {:d}.{:d}.{:d}\n\nApplication is licensed under GPL v3\n\n"\
-			"To report issues or for support please send an email to airnef@hotmail.com - the email must "\
-			"include airnef-support in the title to be routed past my email spam filter.\n\n"\
+		helpmenu.add_command(label="About", command=lambda : tkMessageBox.showinfo("airnef-2", \
+			"airnef-2 - Version {:s}\n\nRunning under Python Version {:d}.{:d}.{:d}\n\nApplication is licensed under GPL v3\n\n"\
+			"This is a fork of the original airnef project at https://testcams.com/airnef/\n\n"\
 			"Special thanks to Joe FitzPatrick for his work on reverse engineering Nikon's Wifi interface\n\n"\
 			"Camera bitmap courtesy of rg1024 at https://openclipart.org/detail/20364/cartoon-camera\n\n"\
 			"Computer bitmap courtesy of lnasto at https://openclipart.org/detail/171010/computer-client\n\n"\
@@ -1254,7 +1254,7 @@ def main():
 
 	root = Tk()
 	if not os.path.exists(g.appResourceDir):
-		tkMessageBox.showwarning("Setup Error", "The appresource subdirectory is missing. This directory and its files (icons/bitmaps/etc..) are needed for proper functioning of airnef :(")
+		tkMessageBox.showwarning("Setup Error", "The appresource subdirectory is missing. This directory and its files (icons/bitmaps/etc..) are needed for proper functioning of airnef-2 :(")
 		return	
 #	root.resizable(0,0) I'm tempted to disable resizing (for aesthetics) but going to kee it enabled in case some platforms don't size the main window properly
 	app = Application(master=root)
