@@ -1135,7 +1135,8 @@ def startMtpSession():
 	# is reqiured but failing to do so will cause the MTP session
 	# to hang unless I replace the probe with a one-second delay)
 	#
-	mtpwifi.sendProbeRequest(g.socketEvents)
+	# Commented out as per https://web.archive.org/web/20221202051848/https://testcams.com/blog/forums/topic/canon-eos-m5-connection-refused/
+	# mtpwifi.sendProbeRequest(g.socketEvents)
 	
 	#
 	# get device information, which is needed now because some cameras
