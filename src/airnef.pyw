@@ -55,6 +55,7 @@ import json
 import datetime
 import signal
 import sys
+import re
 
 #
 # constants
@@ -255,7 +256,8 @@ def launchAirnefcmd(argStr):
 			else: # linux
 				process = subprocess.Popen(['xterm', '+hold', '-e', os.path.join(g.appDir, 'airnefcmd')] + argList)
 		else:
-			process = subprocess.Popen(['python', os.path.join(g.appDir, 'airnefcmd.py')] + argList)
+			interpreter = 'python' if sys.executable == None or sys.executable == '' else os.path.basename(sys.executable)
+			process = subprocess.Popen([interpreter, os.path.join(g.appDir, 'airnefcmd.py')] + argList)
 
 		if process:
 			_errno = process.wait()
