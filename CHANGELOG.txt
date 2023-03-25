@@ -1,0 +1,13 @@
+airnef-2 Changelog
+
+
+Version: 1.0.0, 2023-03-25
+
+Fixed:
+* Socket error "timed out" when connecting to Nikon camera
+  https://web.archive.org/web/20221202051848/https://testcams.com/blog/forums/topic/canon-eos-m5-connection-refused/
+* GUI does not work with modern Python 3 on Linux
+Changed:
+* Updated airnef code with airnef-2 version
+Added:
+* Forked original airnef project from https://testcams.com/airnef/

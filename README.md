@@ -2,6 +2,8 @@
 
 Fork of the Airnef project from https://testcams.com/airnef/
 
+Change log: [CHANGELOG.txt](CHANGELOG.txt)
+
 
 ## Original Airnef documentation
 
